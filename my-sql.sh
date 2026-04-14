@@ -14,8 +14,10 @@ VALIDATE(){
     if [ $? -ne 0 ]
     then
         echo -e "$2 .... $R Failue $N"
+        exit 1
     else
         echo -e "$2 ..... $G Sucuess $N"
+    fi
 }
 
 if [ $USERID -ne 0 ]
