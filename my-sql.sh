@@ -41,7 +41,7 @@ systemctl start mysqld    &>>$LOGFILE
 VALIDATE $? "start mysqld"
 
 mysql -h db.nsrikanth.online -uroot -p{$SQLROOTPASSWORD} -e 'show databases;' &>>LOGFILE
-if [ $? eq 0 ]
+if [ $? -eq 0 ]
 then
     echo -e "root password already setup.....$Y Skipping $N"
 else
