@@ -10,6 +10,9 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[om"
 
+echo -e "ENTER THE USERNAME"
+read -s SQLROOTPASSWORD
+
 VALIDATE(){
     if [ $? -ne 0 ]
     then
@@ -37,12 +40,12 @@ VALIDATE $? "enable mysqld"
 systemctl start mysqld    &>>$LOGFILE
 VALIDATE $? "start mysqld"
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 -e 'show databases;' &>>LOGFILE
+mysql -h db.nsrikanth.online -uroot -p{$SQLROOTPASSWORD} -e 'show databases;' &>>LOGFILE
 if [ $? eq 0 ]
 then
     echo -e "root password already setup.....$Y Skipping $N"
 else
-    mysql_secure_installation --set-root-pass ExpenseApp@1  &>>$LOGFILE
+    mysql_secure_installation --set-root-pass {$SQLROOTPASSWORD}  &>>$LOGFILE
     VALIDATE $? "setup the root password"
 fi
 
