@@ -13,19 +13,19 @@ N="\e[0m"
 VALIDATE(){
     if [ $? -ne 0 ]
     then
-        echo "$2 ... failure"
+        echo -e "$2 ... $R failure $N"
         exit 1
     else
-        echo "$2 ... success"
+        echo "$2 ... $G success  $N"
     fi
 }
 
 if [ $USERID -ne 0 ]
 then
-    echo "please run the inside the root user"
+    echo -e "$R please run the inside the root user $N"
     exit 1
 else
-    echo "you are root user"
+    echo -e "$G you are root user $N"
 fi
 
 dnf install nginx -y  &>>$LOGFILE
