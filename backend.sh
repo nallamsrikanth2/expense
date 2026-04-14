@@ -29,8 +29,8 @@ else
     echo -e " $G you are root user $N"
 fi
 
-echo -e " $G Enter the username $N" &>>$LOGFILE
-read -s SQLROOTPASSWORD
+# echo -e " $G Enter the username $N" &>>$LOGFILE
+# read -s SQLROOTPASSWORD
 
 dnf module disable nodejs -y  &>>$LOGFILE
 VALIDATE $? "disable nodejs"
@@ -84,7 +84,7 @@ VALIDATE $? "enable the code"
 dnf install mysql -y  &>>$LOGFILE
 VALIDATE $? "install mysql"
 
-mysql -h db.nsrikanth.online -uroot -p"${SQLROOTPASSWORD}" < /app/schema/backend.sql  &>>$LOGFILE
+mysql -h db.nsrikanth.online -uroot -pExpenseApp@1 < /app/schema/backend.sql  &>>$LOGFILE
 VALIDATE $? "load the mysql schema"
 
 systemctl restart backend   &>>$LOGFILE
