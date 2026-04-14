@@ -14,10 +14,10 @@ N="\e[0m"
 VALIDATE(){
     if [ $? -ne 0 ]
     then
-        echo -e "$?  ... $R failure $N"
+        echo -e "$2  ... $R failure $N"
         exit 1
     else
-        echo -e "$?   ... $G Sucess $N"
+        echo -e "$2   ... $G Sucess $N"
     fi
 
 }
@@ -84,7 +84,7 @@ VALIDATE $? "enable the code"
 dnf install mysql -y
 VALIDATE $? "install mysql"
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -p{$SQLROOTPASSWORD} < /app/schema/backend.sql
+mysql -h db.nsrikanth.online -uroot -p{$SQLROOTPASSWORD} < /app/schema/backend.sql
 VALIDATE $? "load the mysql schema"
 
 systemctl restart backend
